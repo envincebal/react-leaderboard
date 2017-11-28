@@ -1,0 +1,30 @@
+$mainGreen: #026402;
+
+body {
+	margin: 0;
+	padding: 0;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	background-color: #fce6cc;
+
+	.header-div {
+		font-family: 'Lato', sans-serif;
+		font-size: 40px;
+		color: #fff;
+		font-weight: 700;
+		background-color: $mainGreen;
+		padding: 10px;
+		text-align: center;
+	}
+
+	table {
+		max-width: 900px;
+		width: 100%;
+		margin: 40px auto;
+
+		thead {
+			background-color: $mainGreen;
+			color: #fff;
+		}
+	}
+}
