@@ -3,9 +3,10 @@ body {
   padding: 0;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  background-color: #fce6cc; }
+  background-color: #fce6cc;
+  font-family: 'Lato', sans-serif;
+  text-align: center; }
   body .header-div {
-    font-family: 'Lato', sans-serif;
     font-size: 40px;
     color: #fff;
     font-weight: 700;
@@ -15,9 +16,18 @@ body {
   body table {
     max-width: 900px;
     width: 100%;
-    margin: 40px auto; }
+    margin: 40px auto;
+    border-collapse: collapse; }
     body table thead {
       background-color: #026402;
       color: #fff; }
+    body table th,
+    body table td {
+      padding: 15px 0;
+      border: 1px solid #000; }
+      body table th img,
+      body table td img {
+        border-radius: 100%;
+        width: 45px; }
 
 /*# sourceMappingURL=index.css.map */
