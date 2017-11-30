@@ -9,6 +9,12 @@ body {
 	font-family: 'Lato', sans-serif;
 	text-align: center;
 
+	a:link,
+	a:visited {
+		text-decoration: none;
+		color: $mainGreen;
+	}
+
 	.header-div {
 		font-size: 40px;
 		color: #fff;
@@ -23,8 +29,9 @@ body {
 		width: 100%;
 		margin: 40px auto;
 		border-collapse: collapse;
+		border: 1px solid #000;
 
-		thead {
+		#header-row {
 			background-color: $mainGreen;
 			color: #fff;
 		}
@@ -32,12 +39,40 @@ body {
 		th,
 		td {
 			padding: 15px 0;
-			border: 1px solid #000;
+			font-weight: 400;
+			font-size: 20px;
+
+			@media (max-width: 577px){
+				font-size: 16px;
+			}
 
 			img {
 				border-radius: 100%;
 				width: 45px;
 			}
+
+
+		}
+
+		.underline {
+			color: #89fd89;
+			text-decoration: underline;
+		}
+
+		.points-link {
+			cursor: pointer;
+		}
+
+		tr:nth-child(even) {
+			background-color: #dbdbdb;
+		}
+
+		tr:nth-child(odd) {
+			background-color: #fff;
+		}
+
+		.number {
+			font-weight: 700;
 		}
 	}
 }

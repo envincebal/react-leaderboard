@@ -13,7 +13,7 @@ class Leaderboard extends Component {
 		this.allTimeHandler = this.allTimeHandler.bind(this);
 		this.state = {
 			listItems: [],
-			toggle: false
+			underLine: false
 		}
    }
 
@@ -36,6 +36,7 @@ class Leaderboard extends Component {
 
 			this.setState({
 				listItems: updatedData,
+				underLine: false
 			});
 		})
 	}
@@ -48,21 +49,33 @@ class Leaderboard extends Component {
 
 			this.setState({
 				listItems: updatedData,
+				underLine: true
 			});
 		})
 	}
 
    render() {
+
       return (
 			<div className="App">
 				<Title />
 				<table>
 					<thead>
-						<tr>
+						<tr id="header-row">
 							<th>#</th>
 							<th>Name</th>
-							<th onClick={this.recentHandler}>Last 30 days pts</th>
-							<th onClick={this.allTimeHandler}>All time pts</th>
+							<th className={!this.state.underLine ? "underline" : null}>
+							 	<span
+							 		onClick={this.recentHandler}
+							 		className="points-link">Last 30 days pts
+								</span>
+							</th>
+							<th className={this.state.underLine ? "underline" : null}>
+							 	<span
+							 		onClick={this.allTimeHandler}
+							 		className="points-link">All time pts
+								</span>
+							</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -96,7 +109,7 @@ const Title = (props) => {
 const ListItem = (props) => {
 	return (
 		<tr>
-			<td>{props.index}</td>
+			<td className="number">{props.index}</td>
 			<td>
 				<a href={props.profile}>
 					<img src={props.image}  alt={props.alt} />
