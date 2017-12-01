@@ -1,61 +1,37 @@
 import React, {Component} from 'react';
 import axios from "axios";
 
-const dataCall = {
-	allTime: "https://fcctop100.herokuapp.com/api/fccusers/top/alltime",
-	recent: "https://fcctop100.herokuapp.com/api/fccusers/top/recent"
+const url = {
+	recent: "https://fcctop100.herokuapp.com/api/fccusers/top/recent",
+	allTime: "https://fcctop100.herokuapp.com/api/fccusers/top/alltime"
 }
 
 class Leaderboard extends Component {
    constructor(props) {
       super(props);
-		this.recentHandler = this.recentHandler.bind(this);
-		this.allTimeHandler = this.allTimeHandler.bind(this);
+		this.getUsers = this.getUsers.bind(this);
 		this.state = {
-			listItems: [],
+			users: [],
 			underLine: false
 		}
    }
 
 	componentDidMount(){
-		axios.get(dataCall.recent)
-		.then(response => {
-			const updatedData = response.data.map(items => items);
-
-			this.setState({
-				listItems: updatedData
-			});
-		})
+		this.getUsers(url.recent);
 	}
 
-	recentHandler(e){
-		e.preventDefault();
-		axios.get(dataCall.recent)
+	getUsers(call){
+		axios.get(call)
 		.then(response => {
 			const updatedData = response.data.map(items => items);
 
 			this.setState({
-				listItems: updatedData,
-				underLine: false
-			});
-		})
-	}
-
-	allTimeHandler(e){
-		e.preventDefault();
-		axios.get(dataCall.allTime)
-		.then(response => {
-			const updatedData = response.data.map(items => items);
-
-			this.setState({
-				listItems: updatedData,
-				underLine: true
+				users: updatedData
 			});
 		})
 	}
 
    render() {
-
       return (
 			<div className="App">
 				<Title />
@@ -66,20 +42,32 @@ class Leaderboard extends Component {
 							<th>Name</th>
 							<th className={!this.state.underLine ? "underline" : null}>
 							 	<span
-							 		onClick={this.recentHandler}
+							 		onClick={() => {
+										this.getUsers(url.recent);
+										this.setState({
+											underLine: false
+										})
+									}}
 							 		className="points-link">Last 30 days pts
 								</span>
 							</th>
 							<th className={this.state.underLine ? "underline" : null}>
 							 	<span
-							 		onClick={this.allTimeHandler}
+							 		onClick={() => {
+										this.getUsers(url.allTime);
+										this.setState({
+											underLine: true
+										})
+									}}
 							 		className="points-link">All time pts
 								</span>
 							</th>
 						</tr>
 					</thead>
 					<tbody>
-					{this.state.listItems.map((item, index) => {
+
+					{
+						this.state.users.map((item, index) => {
 						return <ListItem
 						key={index}
 						index={index + 1}
