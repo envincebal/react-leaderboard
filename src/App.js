@@ -54,7 +54,7 @@ class Leaderboard extends Component {
 									className="points-link">Last 30 days pts
 								</span>
 							</th>
-							<th className={underline ? "underline" : null}>
+							<th className={!underline ? "underline" : null}>
 								<span
 									onClick={() => {
 										this.getUsers(url.allTime);
