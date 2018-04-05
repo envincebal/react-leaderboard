@@ -18,11 +18,11 @@ class Leaderboard extends Component {
 		}
 	}
 
-	componentDidMount() {
+	componentDidMount = () => {
 		this.getUsers(url.recent);
 	}
 
-	getUsers(call) {
+	getUsers = (call) => {
 		axios.get(call)
 			.then(response => {
 				const updatedData = response.data;
@@ -34,6 +34,7 @@ class Leaderboard extends Component {
 	}
 
 	render() {
+		const underline = !this.state.underLine;
 		return (
 			<div className="App">
 				<Title />
@@ -42,7 +43,7 @@ class Leaderboard extends Component {
 						<tr id="header-row">
 							<th>#</th>
 							<th>Name</th>
-							<th className={!this.state.underLine ? "underline" : null}>
+							<th className={underline ? "underline" : null}>
 								<span
 									onClick={() => {
 										this.getUsers(url.recent);
@@ -53,7 +54,7 @@ class Leaderboard extends Component {
 									className="points-link">Last 30 days pts
 								</span>
 							</th>
-							<th className={this.state.underLine ? "underline" : null}>
+							<th className={underline ? "underline" : null}>
 								<span
 									onClick={() => {
 										this.getUsers(url.allTime);
